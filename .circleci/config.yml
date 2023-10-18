@@ -1,0 +1,17 @@
+version: 2.1
+workflows:
+  testing:
+    jobs:
+      - runner-test
+jobs:
+  runner-test:
+    machine: true
+    resource_class: e-yes/xgo2-buildroot
+    steps:
+      - run:
+          name: rain
+          command: |
+            mkdir -p output/images
+            date > output/images/sdcard.img
+      - store_artifacts:
+          path: output/images/sd*
